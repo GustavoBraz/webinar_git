@@ -1,5 +1,6 @@
 <?php
 /**
+ * Teste de versao do GIT
  * User
  * @Table(name="User", uniqueConstraints={@UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @Entity

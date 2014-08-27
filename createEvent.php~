@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        if ($_GET) {
+            
+            require_once 'bootstrap.php';
+
+            $administrator = $entityManager->find('User',6);
+            
+            $event = new Event();
+
+            $event->setName($_GET['name'])
+                  ->setDate($_GET['date']);
+
+            $event->setIdAdministratorUser($administrator);
+
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            echo 'passou';
+        }
+        ?>
+        <a href="formCreate.php">Adicionar um novo usuário</a>
+    </body>
+</html>

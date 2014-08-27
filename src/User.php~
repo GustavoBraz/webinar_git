@@ -1,0 +1,142 @@
+<?php
+
+namespace Lab\ManyMany_OneMany\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="User")
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pass", type="string", length=45, nullable=false)
+     */
+    private $pass;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idUser;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Lab\ManyMany_OneMany\Entity\Event", mappedBy="idUser")
+     */
+    private $idEvent;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idEvent = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Set pass
+     *
+     * @param string $pass
+     * @return User
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
+
+        return $this;
+    }
+
+    /**
+     * Get pass
+     *
+     * @return string 
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer 
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Add idEvent
+     *
+     * @param \Lab\ManyMany_OneMany\Entity\Event $idEvent
+     * @return User
+     */
+    public function addIdEvent(\Lab\ManyMany_OneMany\Entity\Event $idEvent)
+    {
+        $this->idEvent[] = $idEvent;
+
+        return $this;
+    }
+
+    /**
+     * Remove idEvent
+     *
+     * @param \Lab\ManyMany_OneMany\Entity\Event $idEvent
+     */
+    public function removeIdEvent(\Lab\ManyMany_OneMany\Entity\Event $idEvent)
+    {
+        $this->idEvent->removeElement($idEvent);
+    }
+
+    /**
+     * Get idEvent
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+        if ($_GET) {
+
+            require_once 'bootstrap.php';
+
+            echo 'Antes de criar User <br>';
+            $user = new User;
+            echo 'Depois de criar User <br>';
+
+            $user->setPass($_GET['pass'])
+                ->setName($_GET['name']);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            echo 'passou';
+        }
+        ?>
+        <a href="formCreate.php">Adicionar um novo usuário</a>
+    </body>
+</html>
